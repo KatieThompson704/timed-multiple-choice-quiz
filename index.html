@@ -9,17 +9,45 @@
   </head>
 
   <body>
-    <div id="start">
-      <button id="startbtn">START</button>
-    </div>
+    <div id="window-container">
+      <div id="top-container">
+        <button id="high-score-btn">High Scores</button>
+        <button id="return-home-btn">Return Home</button>
+        <h1 id="timer"></h1>
+      </div>
+      <div id="scores" class="hide"></div>
+      <div id="start">
+        <h1 id="quiz-title">Javascript Quiz Challenge</h1>
+        <p>
+          How well do you know Javascript? <br />
+          <br />Take this quiz and find out! Click the the START button below.
+          You will have 60 seconds to complete the quiz. However, each incorrect
+          answer results in a 5 second deduction from your allowed time. So
+          choose quickly and carefully!
+        </p>
 
-    <div id="quiz" class="hide">
-      <div class="quiz-container">
-        <h2 class="question"></h2>
-        <div class="answer-box"></div>
+        <button id="startbtn">START</button>
+      </div>
+
+      <div id="quiz" class="hide">
+        <div class="quiz-container">
+          <h2 class="question"></h2>
+          <div class="answer-box"></div>
+          <h3 id="feedback"></h3>
+        </div>
+      </div>
+
+      <div id="end" class="hide">
+        <h2 id="display-score"></h2>
+        <label for="initials"></label>
+        <input
+          type="initials"
+          id="initials"
+          placeholder="Enter your initials"
+        />
+        <button id="submitbtn">SUBMIT</button>
       </div>
     </div>
-    <div id="end" class="hide"></div>
 
     <script src="./script.js"></script>
   </body>
