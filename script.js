@@ -15,29 +15,29 @@ var scoresEl = document.getElementById("scores");
 var score = 0;
 var questions = [
   {
-    text: "Which of the following is NOT an original Skittles flavor?",
-    choices: ["Orange", "Lemon", "Strawberry", "Green Apple"],
-    answer: "Green Apple",
+    text: "1. Using your knowledge of JavaScript Assignment Operators, which of the following is the same as 'x = x+y' ?",
+    choices: ["x = y", "x += y", "x -= y", "x *= y"],
+    answer: "x += y",
   },
   {
-    text: "In what year did Skittles debut thier 'Taste the Rainbow' slogan?",
-    choices: ["1979", "1994", "2007", "2021"],
-    answer: "1994",
+    text: "2. Which of the following is NOT a Logical Operator in JavaScript?",
+    choices: ["+", "&&", "||", "!"],
+    answer: "+",
   },
   {
-    text: "Question 3",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 1",
+    text: "3. Array indexes in JavaScript start with _______.",
+    choices: ["-1", "1", "0", "0.1"],
+    answer: "0",
   },
   {
-    text: "Question 4",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 1",
+    text: "4. The JavaScript array method _______ REMOVES the LAST element from an array.",
+    choices: ["shift()", "unshift()", "push()", "pop()"],
+    answer: "pop()",
   },
   {
-    text: "Question 5",
-    choices: ["Answer 1", "Answer 2", "Answer 3", "Answer 4"],
-    answer: "Answer 1",
+    text: "5. The JavaScript array method _______ ADDS a new element to the end of an array.",
+    choices: ["shift()", "unshift()", "push()", "pop()"],
+    answer: "push()",
   },
 ];
 var questionIndex = 0;
@@ -76,12 +76,12 @@ function askQuestion() {
       if (questionIndex >= 4) {
         quizEl.setAttribute("class", "hide");
         endEl.removeAttribute("class", "hide");
+        displayScore(score);
         return score;
       }
       // move to next question
       questionIndex++;
       askQuestion();
-      displayScore(score);
     });
     answerEl.appendChild(button);
   });
