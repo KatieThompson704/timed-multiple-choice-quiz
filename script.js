@@ -8,10 +8,12 @@ var endEl = document.getElementById("end");
 var scoreEl = document.getElementById("display-score");
 var timerEl = document.getElementById("timer");
 var feedbackEl = document.getElementById("feedback");
-var intialInput = document.getElementById("intials");
+var initialsInput = document.getElementById("initials");
 var highScoreButton = document.getElementById("high-score-btn");
 var homeButton = document.getElementById("return-home-btn");
 var scoresEl = document.getElementById("scores");
+var savedInitialsEl = document.getElementById("saved-initials");
+var savedScoresEl = document.getElementById("saved-scores");
 var score = 0;
 var questions = [
   {
@@ -115,28 +117,55 @@ function displayScore(score) {
     " questions correctly.";
 }
 
-function inputInitials() {
-  initialInput.textContent = initialInput.value;
-  var user = {
-    initials: initialInput,
-    finalScore: scoreEl.value,
+function inputInitials(score) {
+  var userInfo = {
+    initials: initialsInput.value,
+    finalScore: score,
   };
-  console.log(user);
-  return user;
+  var scoreList = JSON.parse(localStorage.getItem("userInfo"));
+  var arrayOfScores = [];
+  if (scoreList) {
+    scoreList.forEach(function (item) {
+      arrayOfScores.push(item);
+    });
+    arrayOfScores.push(userInfo);
+    localStorage.setItem("userInfo", JSON.stringify(arrayOfScores));
+  } else {
+    arrayOfScores.push(userInfo);
+    localStorage.setItem("userInfo", JSON.stringify(arrayOfScores));
+  }
 }
 
 function submitGame() {
+  //   askQuestion(score);
+  inputInitials(score);
+  displayAllScores();
   //   endEl.setAttribute("class", "hide");
   //   startEl.removeAttribute("class", "hide");
-  location.reload();
+  //   location.reload();
 }
 
 function displayAllScores() {
+  //   inputInitials();
   startEl.setAttribute("class", "hide");
   endEl.setAttribute("class", "hide");
   quizEl.setAttribute("class", "hide");
   scoresEl.removeAttribute("class", "hide");
-  scoresEl.textContent = "Welcome to the High Score Page!";
+  var scoreList = JSON.parse(localStorage.getItem("userInfo"));
+  //   scoresEl.textContent = "High Scores";
+  scoreList.forEach(function (score) {
+    console.log(
+      "initials: " + score.initials + ", score of: " + score.finalScore
+    );
+    var initialsEl = document.createElement("p");
+    initialsEl.textContent = "Initials: " + score.initials;
+    var finalScoreEl = document.createElement("p");
+    finalScoreEl.textContent = "Score: " + score.finalScore;
+    scoresEl.appendChild(initialsEl);
+    scoresEl.appendChild(finalScoreEl);
+  });
+  //   savedScoresEl.textContent = scoreList.finalScore;
+  //   savedInitialsEl.textContent = scoreList.initials;
 }
 
 function returnHome() {
